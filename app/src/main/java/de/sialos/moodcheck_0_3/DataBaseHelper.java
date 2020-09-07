@@ -15,7 +15,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_RESULTSETS = "RESULT_SETS";
 
 
-
     //Constructor
     public DataBaseHelper(@Nullable Context context) {
         super(context, "MoodCheck.db", null, 1);
@@ -24,9 +23,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement = "CREATE TABLE " + TABLE_RESULTSETS +  "( " +
+        String createTableStatement = "CREATE TABLE " + TABLE_RESULTSETS + "( " +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_DATETIME + " INT )";
+                COLUMN_DATETIME + " INT, " +
+                COLUMN_RESULTSETS + " INT )";
 
         sqLiteDatabase.execSQL(createTableStatement);
     }
@@ -56,11 +56,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         " WHERE _ID = ( SELECT MAX(_ID) FROM " + TABLE_RESULTSETS + " )";
 
         SQLiteDatabase db = this.getReadableDatabase();
+        LoggerModel loggerModel;
         Cursor c = db.rawQuery(queryString, null);
-        LoggerModel loggerModel = new LoggerModel(c.getInt(0), c.getInt(1), c.getInt(2));
+        c.moveToFirst();
+        loggerModel = new LoggerModel(c.getInt(0), c.getInt(1), c.getInt(2));
+
+
         c.close();
         db.close();
-
         return loggerModel;
+
+
     }
 }

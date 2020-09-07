@@ -53,16 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     boolean success = db.addRow(loggerModel);
 
                     // Hole letzte Reihe aus DB, um zu zeigen, dass alles klappt
-                    LoggerModel lastLoggerModel = new LoggerModel();
-                    lastLoggerModel = db.getLastEntry();
-
+                    LoggerModel lastLoggerModel  = db.getLastEntry();
 
                     Toast.makeText(MainActivity.this,
                             "ResultSet is " + loggerModel.getResultSet()
-                                    + "\nTime is " + loggerModel.getReadableDateTime()
                                     + "\nWrite to DB is success: " + success
                                     + "\nid of last entry:" + lastLoggerModel.getId()
-                                    + "\ntime: " + lastLoggerModel.getReadableDateTime()
+                                    + "\ntime: " + lastLoggerModel.getTimeDate()
                                     + "\nresultSet: " + lastLoggerModel.getResultSet()
                             , Toast.LENGTH_LONG).show();
                 } else {

@@ -7,21 +7,16 @@ import java.util.Date;
 public class LoggerModel {
 
     private final int MAX_VALUE_OF_RESULT = 2;
-
-    Date date = new Date();
-    // SimpleDateFormat ist veraltet und "troublesome", in NÄCHSTER Version etwas neueres benutzen!
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String readableDateTime = sdf.format(date);
+    private Date date;
     private int id;
     private int timeDate;
     private int resultSet = 0;
-    private int result;
 
-    public String getReadableDateTime() {
-        return readableDateTime;
-    }
 
+    // Constructors
     public LoggerModel() {
+        this.id = -1;
+        this.date = new Date();
         this.timeDate = (int) date.getTime();
     }
 
