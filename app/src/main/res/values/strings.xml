@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoodCheck 0.3</string>
+    <string name="txtFrage">Wie hast du geschlafen?</string>
+    <string name="btn_good">gut</string>
+    <string name="btn_bad">schlecht</string>
+    <string name="btn_send">send</string>
 </resources>
