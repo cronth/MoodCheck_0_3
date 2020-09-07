@@ -12,9 +12,10 @@ public class LoggerModel {
     // SimpleDateFormat ist veraltet und "troublesome", in NÄCHSTER Version etwas neueres benutzen!
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String readableDateTime = sdf.format(date);
+    private int id;
     private int timeDate;
-    private int result;
     private int resultSet = 0;
+    private int result;
 
     public String getReadableDateTime() {
         return readableDateTime;
@@ -22,6 +23,16 @@ public class LoggerModel {
 
     public LoggerModel() {
         this.timeDate = (int) date.getTime();
+    }
+
+    public LoggerModel(int id, int timeDate, int resultSet) {
+        this.id = id;
+        this.timeDate = timeDate;
+        this.resultSet = resultSet;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getTimeDate() {

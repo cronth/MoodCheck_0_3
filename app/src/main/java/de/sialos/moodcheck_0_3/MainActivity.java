@@ -47,14 +47,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (result != 0) {
+                    // Schreibe neue Zeile in DB
                     loggerModel.updateResultSet(result);
+                    DataBaseHelper db = new DataBaseHelper(MainActivity.this);
+                    boolean success = db.addRow(loggerModel);
+
+                    // Hole letzte Reihe aus DB, um zu zeigen, dass alles klappt
+                    LoggerModel lastLoggerModel = new LoggerModel();
+                    lastLoggerModel = db.getLastEntry();
+
+
                     Toast.makeText(MainActivity.this,
                             "ResultSet is " + loggerModel.getResultSet()
                                     + "\nTime is " + loggerModel.getReadableDateTime()
-                            , Toast.LENGTH_SHORT).show();
+                                    + "\nWrite to DB is success: " + success
+                                    + "\nid of last entry:" + lastLoggerModel.getId()
+                                    + "\ntime: " + lastLoggerModel.getReadableDateTime()
+                                    + "\nresultSet: " + lastLoggerModel.getResultSet()
+                            , Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(MainActivity.this, getString(R.string.str_choose_answer_first), Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
