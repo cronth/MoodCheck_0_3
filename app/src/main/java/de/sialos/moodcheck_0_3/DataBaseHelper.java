@@ -66,6 +66,5 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return loggerModel;
 
-
     }
 }
